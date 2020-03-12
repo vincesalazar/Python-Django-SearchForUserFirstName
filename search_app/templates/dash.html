@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Hello, {{user.first_name}}</h1>
+    <h2>Search for who else has registered by First Name:</h2>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <form action="/search/forFirstName" method="POST">
+        {% csrf_token %}
+        <label for="">
+            First Name: <input type="text" name="first_name">
+        </label>
+    </form>
+    {% if searchedUsers %}
+    <div>
+        {% for user in searchedUsers %}
+        <a href="/dash">
+            <ul>
+                <li>UserName: {{user.user_name}}</li>
+                <li>Name: {{user.first_name}} {{user.last_name}}</li>
+                <li>Email: {{user.email}}</li>
+            </ul>
+        </a>
+        {% endfor %}
+    </div>
+    {% endif %}
+</body>
+
+</html>

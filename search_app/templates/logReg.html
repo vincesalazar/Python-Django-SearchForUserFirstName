@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Python</title>
+</head>
+
+<body style="background-color: rgba(0, 0, 0, 0.082);">
+    <div>
+        <h1 class="h1">Django is Rad</h1>
+        {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+            <li {% if message.tags %} class="{{message.tags}}" {% endif %}>{{message}}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <form action="regUser" method="POST" class="form">
+            <h2>Registration</h2>
+            {% csrf_token %}
+            <label>
+                Username: <input type="text" name="user_name">
+            </label><br><br>
+            <label for="">
+                First Name: <input name="first_name" type="text">
+            </label>
+            <br>
+            <br>
+            <label for="">
+                Last Name: <input name="last_name" type="text">
+            </label>
+            <br>
+            <br>
+            <label for="">
+                Email: <input name="email" type="text">
+            </label>
+            <br><br>
+            <label for="">
+                Password: <input name="password" type="password">
+            </label>
+            <br>
+            <br>
+            <label for="">
+                Password Confirmation: <input name="pw_confirm" type="password">
+            </label>
+            <br><br>
+            <label for="">
+                Describe Yourself: <br/> <textarea name="desc" id="" cols="30" rows="10"></textarea>
+            </label><br><br>
+            <input type="hidden" name="default_desc" value="(has not described themselves)">
+            <input value="Register" type="submit" class="button">
+        </form><br><br>
+
+        <!-- LOGIN -->
+        <form action="loginUser" method="POST" class="form">
+            <h2>Already Registered? Login Here</h2>
+            {% csrf_token %}
+            <label for="" class="label">
+                Email <br><input name='email' type="text">
+            </label>
+            <br>
+            <br>
+            <label for="" class="label">
+                Password <br><input name="password" type="password">
+            </label>
+            <br>
+            <br>
+            <input type="submit" value="Login" class="button">
+        </form>
+    </div>
+</body>
+
+</html>
